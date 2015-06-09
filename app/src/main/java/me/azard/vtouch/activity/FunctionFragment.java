@@ -15,6 +15,7 @@ import me.azard.vtouch.R;
 import me.azard.vtouch.network.imp.ClientManager;
 import me.azard.vtouch.protocol.intf.IProtocolController;
 import me.azard.vtouch.protocol.intf.IStartWifiCallBack;
+import me.azard.vtouch.ui.MyGifView;
 
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
@@ -41,7 +42,7 @@ public class FunctionFragment extends MainActivity.PlaceholderFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_function, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_function, container, false);
         // 绑定Button事件
         rootView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {btnFunctionWifiOn(v);}
@@ -52,6 +53,19 @@ public class FunctionFragment extends MainActivity.PlaceholderFragment {
                 btnFunctionShell(v);
             }
         });
+
+        rootView.findViewById(R.id.bigbutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rootView.findViewById(R.id.iv).setVisibility(View.VISIBLE);
+                rootView.findViewById(R.id.leftglove).setBackground(getResources().getDrawable(R.drawable.left_glove_cnt));
+                rootView.findViewById(R.id.rightglove).setBackground(getResources().getDrawable(R.drawable.right_glove_cnt));
+                //btnFunctionWifiOn(v);
+                //rootView.findViewById(R.id.iv).setVisibility(View.INVISIBLE);
+            }
+        });
+
+
 
         mClientManager = getMainActivity().getClientManager();
         return rootView;
@@ -81,6 +95,7 @@ public class FunctionFragment extends MainActivity.PlaceholderFragment {
 
 
     }
+
 
 
     public void btnFunctionShell(View v) {

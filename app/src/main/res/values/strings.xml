@@ -12,6 +12,13 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name ="spin_prompt"> 请选择游戏 </string>
+
+    <string-array name="gamenames">
+        <item>O2JAM-U</item>
+        <item>DJMAX</item>
+    </string-array>
+
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

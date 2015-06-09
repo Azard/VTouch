@@ -4,20 +4,136 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_gravity="center" />
+        android:text="@string/hello_blank_fragment"
+        android:id="@+id/hello" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/button2"
-        android:layout_gravity="right|center_vertical" />
+        android:layout_gravity="right|center_vertical"
+        android:visibility="invisible"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal|bottom"
+        android:visibility="invisible"/>
+
+
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:layout_gravity="right|top" />
+
+
+
+
+    <ImageView
+        android:layout_width="383dp"
+        android:layout_height="575dp"
+        android:id="@+id/imageView"
+        android:layout_gravity="center|right|top"
+        android:src="@drawable/back"
+        android:adjustViewBounds="false" />
+
+    <ImageButton
+        android:layout_width="151dp"
+        android:layout_height="140dp"
+        android:src="@drawable/ib_forward"
+        android:scaleType="fitXY"
+        android:id="@+id/bigbutton"
+        android:background="@android:color/transparent"
+        android:layout_gravity="center_horizontal|bottom" />
+
+
+    <me.azard.vtouch.ui.MyGifView
+        android:id="@+id/iv"
+        android:layout_height="94dp"
+        android:layout_width="179dp"
+        android:layout_margin="20dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="center|bottom|right"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:text="开始游戏适配"
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:paddingTop="180dp"
+        android:paddingLeft="120dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_gravity="right|top" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/leftglove"
+        android:layout_gravity="left|bottom"
+        android:background="@drawable/left_glove_dis"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rightglove"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/right_glove_dis" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="50dp"
+        android:layout_gravity="center_horizontal|bottom">
+
+    <Spinner
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/game"
+        android:layout_gravity="center"
+        android:spinnerMode="dialog"
+        android:entries="@+array/gamenames"
+        android:paddingLeft="30dp"
+        android:transitionGroup="true"
+        android:prompt = "@string/spin_prompt"
+        android:background="@drawable/spinner_selector" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请选择游戏"
+        android:id="@+id/textView2"
+        android:paddingTop="30dp"
+        android:paddingLeft="130dp"
+        android:textStyle="bold|italic"
+        android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_gravity="right|bottom" />
+
 
 </FrameLayout>
