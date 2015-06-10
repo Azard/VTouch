@@ -44,23 +44,16 @@
         android:adjustViewBounds="false" />
 
     <ImageButton
-        android:layout_width="151dp"
-        android:layout_height="140dp"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
         android:src="@drawable/ib_forward"
         android:scaleType="fitXY"
         android:id="@+id/bigbutton"
         android:background="@android:color/transparent"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:layout_gravity="center_horizontal|bottom"
+        android:paddingBottom="40dp" />
 
 
-    <me.azard.vtouch.ui.MyGifView
-        android:id="@+id/iv"
-        android:layout_height="94dp"
-        android:layout_width="179dp"
-        android:layout_margin="20dp"
-        android:scaleType="fitXY"
-        android:layout_gravity="center|bottom|right"
-        android:visibility="invisible" />
 
     <TextView
         android:layout_width="match_parent"
@@ -122,7 +115,7 @@
         android:layout_height="wrap_content"
         android:text="请选择游戏"
         android:id="@+id/textView2"
-        android:paddingTop="30dp"
+        android:paddingTop="10dp"
         android:paddingLeft="130dp"
         android:textStyle="bold|italic"
         android:textSize="20dp" />

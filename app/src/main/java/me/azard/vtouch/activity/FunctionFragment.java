@@ -57,11 +57,10 @@ public class FunctionFragment extends MainActivity.PlaceholderFragment {
         rootView.findViewById(R.id.bigbutton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rootView.findViewById(R.id.iv).setVisibility(View.VISIBLE);
-                rootView.findViewById(R.id.leftglove).setBackground(getResources().getDrawable(R.drawable.left_glove_cnt));
-                rootView.findViewById(R.id.rightglove).setBackground(getResources().getDrawable(R.drawable.right_glove_cnt));
+                set_left_cnt(rootView);
+                set_right_cnt(rootView);
+
                 //btnFunctionWifiOn(v);
-                //rootView.findViewById(R.id.iv).setVisibility(View.INVISIBLE);
             }
         });
 
@@ -69,6 +68,23 @@ public class FunctionFragment extends MainActivity.PlaceholderFragment {
 
         mClientManager = getMainActivity().getClientManager();
         return rootView;
+    }
+    // 手套图标开启连接/关闭连接
+    public void set_left_cnt(View rootView)
+    {
+        rootView.findViewById(R.id.leftglove).setBackground(getResources().getDrawable(R.drawable.left_glove_cnt));
+    }
+    public void set_right_cnt(View rootView)
+    {
+        rootView.findViewById(R.id.rightglove).setBackground(getResources().getDrawable(R.drawable.right_glove_cnt));
+    }
+    public void set_left_dis(View rootView)
+    {
+        rootView.findViewById(R.id.leftglove).setBackground(getResources().getDrawable(R.drawable.left_glove_dis));
+    }
+    public void set_right_dis(View rootView)
+    {
+        rootView.findViewById(R.id.rightglove).setBackground(getResources().getDrawable(R.drawable.right_glove_dis));
     }
 
     // 开启WiFi AP
