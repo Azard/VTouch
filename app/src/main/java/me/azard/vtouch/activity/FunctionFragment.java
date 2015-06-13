@@ -2,26 +2,15 @@ package me.azard.vtouch.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.io.IOException;
-import java.io.DataOutputStream;
 
 import me.azard.vtouch.R;
 
 import me.azard.vtouch.network.imp.ClientManager;
 import me.azard.vtouch.protocol.intf.IProtocolController;
 import me.azard.vtouch.protocol.intf.IStartWifiCallBack;
-import me.azard.vtouch.ui.MyGifView;
-
-import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.exceptions.RootDeniedException;
-import com.stericson.RootTools.execution.CommandCapture;
-import java.util.concurrent.TimeoutException;
-
 
 
 public class FunctionFragment extends MainActivity.PlaceholderFragment {
@@ -30,6 +19,7 @@ public class FunctionFragment extends MainActivity.PlaceholderFragment {
 
     private IProtocolController mIProtocolController;
     private ClientManager mClientManager;
+    public View rootView;
 
 
     public static FunctionFragment newInstance(int sectionNumber) {
@@ -42,55 +32,22 @@ public class FunctionFragment extends MainActivity.PlaceholderFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_function, container, false);
+        rootView = inflater.inflate(R.layout.fragment_function, container, false);
         // 绑定Button事件
-        rootView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {btnFunctionWifiOn(v);}
-        });
-        rootView.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnFunctionShell(v);
-            }
-        });
-
         rootView.findViewById(R.id.bigbutton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                set_left_cnt(rootView);
-                set_right_cnt(rootView);
-
-                //btnFunctionWifiOn(v);
+                set_left_cnt();
+                set_right_cnt();
+                btnFunctionWifiOn(v);
             }
         });
-
-
-
         mClientManager = getMainActivity().getClientManager();
         return rootView;
-    }
-    // 手套图标开启连接/关闭连接
-    public void set_left_cnt(View rootView)
-    {
-        rootView.findViewById(R.id.leftglove).setBackground(getResources().getDrawable(R.drawable.left_glove_cnt));
-    }
-    public void set_right_cnt(View rootView)
-    {
-        rootView.findViewById(R.id.rightglove).setBackground(getResources().getDrawable(R.drawable.right_glove_cnt));
-    }
-    public void set_left_dis(View rootView)
-    {
-        rootView.findViewById(R.id.leftglove).setBackground(getResources().getDrawable(R.drawable.left_glove_dis));
-    }
-    public void set_right_dis(View rootView)
-    {
-        rootView.findViewById(R.id.rightglove).setBackground(getResources().getDrawable(R.drawable.right_glove_dis));
     }
 
     // 开启WiFi AP
     public void btnFunctionWifiOn(View v) {
-
-
         getMainActivity().getClientManager().clear();
         final ProgressDialog waitDialog = ProgressDialog.show(v.getContext(), "开启WiFi热点", "请稍等...", true);
         waitDialog.show();
@@ -107,61 +64,24 @@ public class FunctionFragment extends MainActivity.PlaceholderFragment {
                 waitDialog.dismiss();
             }
         });
-
-
-
     }
 
-
-
-    public void btnFunctionShell(View v) {
-
-
-        try {
-            executeCommand("sendevent /dev/input/event1 3 57 319");
-            executeCommand("sendevent /dev/input/event1 3 53 76");
-            executeCommand("sendevent /dev/input/event1 3 54 171");
-            executeCommand("sendevent /dev/input/event1 3 58 48");
-            executeCommand("sendevent /dev/input/event1 3 48 4");
-            executeCommand("sendevent /dev/input/event1 0 0 0");
-            executeCommand("sendevent /dev/input/event1 3 57 -1");
-            executeCommand("sendevent /dev/input/event1 0 0 0");
-            //Runtime.getRuntime().exec("input keyevent 3");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        } catch (RootDeniedException e) {
-            e.printStackTrace();
-        }
-
-
-
-        /*
-        try {
-            executeCommand("sendevent /dev/input/event0 1 116 1");
-            executeCommand("sendevent /dev/input/event0 0 0 0");
-            executeCommand("sendevent /dev/input/event0 1 116 0");
-            executeCommand("sendevent /dev/input/event0 0 0 0");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        } catch (RootDeniedException e) {
-            e.printStackTrace();
-        }
-        */
-
-
+    // 手套图标开启连接/关闭连接
+    public void set_left_cnt()
+    {
+        rootView.findViewById(R.id.leftglove).setBackground(getResources().getDrawable(R.drawable.left_glove_cnt));
     }
-
-    public void executeCommand(String command) throws InterruptedException, IOException, TimeoutException, RootDeniedException {
-        CommandCapture cmd = new CommandCapture(0, command);
-        RootTools.getShell(true).add(cmd);
+    public void set_right_cnt()
+    {
+        rootView.findViewById(R.id.rightglove).setBackground(getResources().getDrawable(R.drawable.right_glove_cnt));
+    }
+    public void set_left_dis()
+    {
+        rootView.findViewById(R.id.leftglove).setBackground(getResources().getDrawable(R.drawable.left_glove_dis));
+    }
+    public void set_right_dis()
+    {
+        rootView.findViewById(R.id.rightglove).setBackground(getResources().getDrawable(R.drawable.right_glove_dis));
     }
 
 }

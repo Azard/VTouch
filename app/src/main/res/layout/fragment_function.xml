@@ -7,34 +7,6 @@
         android:text="@string/hello_blank_fragment"
         android:id="@+id/hello" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_gravity="right|center_vertical"
-        android:visibility="invisible"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal|bottom"
-        android:visibility="invisible"/>
-
-
-
-    <Chronometer
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/chronometer"
-        android:layout_gravity="right|top" />
-
-
-
-
     <ImageView
         android:layout_width="383dp"
         android:layout_height="575dp"
@@ -53,8 +25,6 @@
         android:layout_gravity="center_horizontal|bottom"
         android:paddingBottom="40dp" />
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="220dp"
@@ -65,12 +35,6 @@
         android:paddingLeft="120dp"
         android:gravity="center_vertical"
         android:layout_gravity="center_vertical" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_gravity="right|top" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -97,36 +61,28 @@
         android:paddingTop="50dp"
         android:layout_gravity="center_horizontal|bottom">
 
-    <Spinner
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/game"
-        android:layout_gravity="center"
-        android:spinnerMode="dialog"
-        android:entries="@+array/gamenames"
-        android:paddingLeft="30dp"
-        android:transitionGroup="true"
-        android:prompt = "@string/spin_prompt"
-        android:background="@drawable/spinner_selector" />
+        <Spinner
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/game"
+            android:layout_gravity="center"
+            android:spinnerMode="dialog"
+            android:entries="@+array/gamenames"
+            android:paddingLeft="30dp"
+            android:transitionGroup="true"
+            android:prompt = "@string/spin_prompt"
+            android:background="@drawable/spinner_selector" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="请选择游戏"
-        android:id="@+id/textView2"
-        android:paddingTop="10dp"
-        android:paddingLeft="130dp"
-        android:textStyle="bold|italic"
-        android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择游戏"
+            android:id="@+id/textView2"
+            android:paddingTop="10dp"
+            android:paddingLeft="130dp"
+            android:textStyle="bold|italic"
+            android:textSize="20dp" />
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView3"
-        android:layout_gravity="right|bottom" />
-
 
 </FrameLayout>

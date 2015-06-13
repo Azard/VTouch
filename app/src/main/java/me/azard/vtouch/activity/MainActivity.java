@@ -1,7 +1,6 @@
 package me.azard.vtouch.activity;
 
 import android.app.Activity;
-import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -15,8 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import java.io.IOException;
-
 import me.azard.vtouch.R;
 
 import me.azard.vtouch.network.imp.ClientManager;
@@ -24,12 +21,7 @@ import me.azard.vtouch.protocol.intf.IProtocolController;
 import me.azard.vtouch.protocol.intf.IProtocolCallBack;
 import me.azard.vtouch.protocol.imp.WifiProtocolController;
 import me.azard.vtouch.network.intf.IServerCallBack;
-
-import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.exceptions.RootDeniedException;
-import com.stericson.RootTools.execution.CommandCapture;
-import java.util.concurrent.TimeoutException;
-
+import me.azard.vtouch.event.Nexus5;
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -40,6 +32,7 @@ public class MainActivity extends ActionBarActivity
 
     private ClientManager mClientManager;
     private IProtocolController mIProtocolController;
+    private Nexus5 mNexus5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +45,8 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout)findViewById(R.id.drawer_layout));
 
         mClientManager = new ClientManager();
+        mNexus5 = new Nexus5();
+
 
         mIProtocolController = new WifiProtocolController(this.getBaseContext());
         mIProtocolController.registerNetworkEvent("Connected", new IServerCallBack() {
@@ -70,32 +65,35 @@ public class MainActivity extends ActionBarActivity
             @Override
             public void execute(Long cid, String argument) {
                 int res = Integer.valueOf(argument);
-                if (res == 1) {
-                    try {
-                        executeCommand("sendevent /dev/input/event1 3 57 319");
-                        executeCommand("sendevent /dev/input/event1 3 53 76");
-                        executeCommand("sendevent /dev/input/event1 3 54 171");
-                        executeCommand("sendevent /dev/input/event1 3 58 48");
-                        executeCommand("sendevent /dev/input/event1 3 48 4");
-                        executeCommand("sendevent /dev/input/event1 0 0 0");
-                        executeCommand("sendevent /dev/input/event1 3 57 -1");
-                        executeCommand("sendevent /dev/input/event1 0 0 0");
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (TimeoutException e) {
-                        e.printStackTrace();
-                    } catch (RootDeniedException e) {
-                        e.printStackTrace();
-                    }
-                    Log.d("AzardDebug", "in playmusic:" + argument);
+                if (res == 7) {
+                    mNexus5.touch(0, 208, 346);
+                } else if (res == 6) {
+                    mNexus5.touch(1, 174, 733);
+                } else if (res == 1) {
+                    mNexus5.touch(2, 173, 1124);
+                } else if (res == 2) {
+                    mNexus5.touch(3, 242, 1468);
                 }
-
+                Log.d("AzardDebug", "in playmusic:" + argument);
             }
         });
 
-
+        mIProtocolController.registerMusicEvent("stopMusic",new IProtocolCallBack() {
+            @Override
+            public void execute(Long cid, String argument) {
+                int res=Integer.valueOf(argument);
+                if (res == 7) {
+                    mNexus5.release(0);
+                } else if (res == 6) {
+                    mNexus5.release(1);
+                } else if (res == 1) {
+                    mNexus5.release(2);
+                } else if (res == 2){
+                    mNexus5.release(3);
+                }
+                Log.d("AzardDebug", "in stopmusic:" + argument);
+            }
+        });
 
 
     }
@@ -162,7 +160,7 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public ClientManager getClientManager(){
+    public ClientManager getClientManager() {
         return mClientManager;
     }
 
@@ -204,11 +202,4 @@ public class MainActivity extends ActionBarActivity
             return (MainActivity)getActivity();
         }
     }
-
-
-    public void executeCommand(String command) throws InterruptedException, IOException, TimeoutException, RootDeniedException {
-        CommandCapture cmd = new CommandCapture(0, command);
-        RootTools.getShell(true).add(cmd);
-    }
-
 }
