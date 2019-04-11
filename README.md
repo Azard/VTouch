@@ -15,4 +15,4 @@ Other Android device virtual touch function can modify from this code
 * [Tencent](http://v.qq.com/boke/page/w/9/8/w0156uait98.html)
 
 # Related technology blog
-* [Android cross app touch event injection (sendevent)](http://azard.me/blog/2015/06/13/android-cross-app-touch-event-injection/)
+* [Android cross app touch event injection (sendevent)](http://blog.azard.me/2015/06/13/android-cross-app-touch-event-injection/)
